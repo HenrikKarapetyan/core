@@ -23,7 +23,9 @@
         "henrik/cache": "dev-main",
         "henrik/environment": "dev-master",
         "henrik/dependency-injector": "dev-master",
-        "henrik/events": "dev-master"
+        "henrik/events": "dev-master",
+        "henrik/log": "dev-master",
+        "henrik/command": "dev-main"
     },
     "require-dev": {
         "phpmd/phpmd": "^2.15",
