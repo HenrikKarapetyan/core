@@ -32,13 +32,13 @@ readonly class AsEventListenerAttributeParser implements AttributeParserInterfac
 
         if ($reflectionClass->hasMethod('__invoke')) {
 
-            $eventDispatcher->addListener((string) $eventListenerAttr?->event, [$handlerInstance, '__invoke'], $eventListenerAttr->priority ?? 0);
+            $eventDispatcher->addListener((string) $eventListenerAttr?->event, [$handlerInstance, '__invoke'], $eventListenerAttr->priority ?? 0); // @phpstan-ignore-line
 
             return;
         }
 
         if ($eventListenerAttr) {
-            $eventDispatcher->addListener((string) $eventListenerAttr->event, [$handlerInstance, $eventListenerAttr->method], $eventListenerAttr->priority ?? 0);
+            $eventDispatcher->addListener((string) $eventListenerAttr->event, [$handlerInstance, $eventListenerAttr->method], $eventListenerAttr->priority ?? 0); // @phpstan-ignore-line
         }
     }
 }

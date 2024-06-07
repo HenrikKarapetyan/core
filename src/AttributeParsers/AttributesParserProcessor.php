@@ -31,10 +31,13 @@ class AttributesParserProcessor implements AttributesParserProcessorInterface
     public function process(object $attributeClass, ReflectionClass $reflectionClass): void
     {
 
-        if ($this->attributesParserContainer->has($attributeClass::class)) {
+        $className = $attributeClass::class;
+        if ($this->attributesParserContainer->has($className)) {
 
+            /** @var string $classNameFromContainer */
+            $classNameFromContainer = $this->attributesParserContainer->get($className);
             /** @var AttributeParserInterface $parserInstance */
-            $parserInstance = $this->dependencyInjector->get($this->attributesParserContainer->get($attributeClass::class));
+            $parserInstance = $this->dependencyInjector->get($classNameFromContainer);
 
             $parserInstance->parse($attributeClass, $reflectionClass);
         }
