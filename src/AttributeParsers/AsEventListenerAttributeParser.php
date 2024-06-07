@@ -1,12 +1,12 @@
 <?php
 
-namespace Hk\Core\AttributeParsers;
+namespace Henrik\Core\AttributeParsers;
 
 use Henrik\Contracts\AttributeParser\AttributeParserInterface;
 use Henrik\Contracts\DependencyInjectorInterface;
 use Henrik\Contracts\EventDispatcherInterface;
+use Henrik\Core\Exceptions\HandlerMethodsNotExistsException;
 use Henrik\Events\Attributes\AsEventListener;
-use Hk\Core\Exceptions\HandlerMethodsNotExistsException;
 use ReflectionClass;
 use ReflectionMethod;
 

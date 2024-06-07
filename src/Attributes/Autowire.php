@@ -1,6 +1,6 @@
 <?php
 
-namespace Hk\Core\Attributes;
+namespace Henrik\Core\Attributes;
 
 use Attribute;
 

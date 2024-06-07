@@ -1,10 +1,10 @@
 <?php
 
-namespace Hk\Core\AttributeParsers;
+namespace Henrik\Core\AttributeParsers;
 
 use Henrik\Contracts\AttributeParser\AttributeParserInterface;
 use Henrik\Contracts\DependencyInjectorInterface;
-use Hk\Core\Attributes\Value;
+use Henrik\Core\Attributes\Value;
 use ReflectionClass;
 use ReflectionMethod;
 

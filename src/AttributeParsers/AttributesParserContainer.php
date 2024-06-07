@@ -1,6 +1,6 @@
 <?php
 
-namespace Hk\Core\AttributeParsers;
+namespace Henrik\Core\AttributeParsers;
 
 use Henrik\Container\Container;
 use Henrik\Container\ContainerModes;

@@ -1,5 +1,5 @@
 <?php
 
-namespace Hk\Core\Exceptions;
+namespace Henrik\Core\Exceptions;
 
 class AbstractDefinitionException extends CoreException {}

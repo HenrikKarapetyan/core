@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Hk\\Core\\": "src/"
+            "Henrik\\Core\\": "src/"
         }
     },
     "authors": [
