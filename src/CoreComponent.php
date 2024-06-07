@@ -2,11 +2,18 @@
 
 namespace Henrik\Core;
 
+use Henrik\Cache\Adapters\FileCachePool;
 use Henrik\Command\ConsoleComponent;
+use Henrik\Contracts\AttributeParser\AttributesParserProcessorInterface;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
 use Henrik\Contracts\ComponentInterfaces\DependsOnAwareInterface;
+use Henrik\Contracts\Enums\ServiceScope;
+use Henrik\Contracts\EventDispatcherInterface;
+use Henrik\Contracts\FunctionInvokerInterface;
+use Henrik\Contracts\MethodInvokerInterface;
 use Henrik\Core\AttributeParsers\AsEventListenerAttributeParser;
+use Henrik\Core\AttributeParsers\AttributesParserProcessor;
 use Henrik\Core\AttributeParsers\ValueAttributeParser;
 use Henrik\Core\Attributes\Value;
 use Henrik\DI\Attributes\AsFactory;
@@ -14,14 +21,46 @@ use Henrik\DI\Attributes\AsPrototype;
 use Henrik\DI\Attributes\AsService;
 use Henrik\DI\Attributes\AsSingleton;
 use Henrik\DI\DIAttributesParser;
+use Henrik\DI\Utils\FunctionInvoker;
+use Henrik\DI\Utils\MethodInvoker;
 use Henrik\Events\Attributes\AsEventListener;
+use Henrik\Events\EventDispatcher;
 use Henrik\Log\LoggerComponent;
+use Psr\Cache\CacheItemPoolInterface;
 
 class CoreComponent extends BaseComponent implements AttributesAndParsersAwareInterface, DependsOnAwareInterface
 {
     public function getServices(): array
     {
-        return require 'config/services.php';
+        return [
+            ServiceScope::SINGLETON->value => [
+                [
+                    'id'    => FunctionInvokerInterface::class,
+                    'class' => FunctionInvoker::class,
+                ],
+                [
+                    'id'    => MethodInvokerInterface::class,
+                    'class' => MethodInvoker::class,
+                ],
+                [
+                    'id'    => EventDispatcherInterface::class,
+                    'class' => EventDispatcher::class,
+                ],
+                [
+                    'id'    => AttributesParserProcessorInterface::class,
+                    'class' => AttributesParserProcessor::class,
+                ],
+                [
+                    'id'    => AsEventListenerAttributeParser::class,
+                    'class' => AsEventListenerAttributeParser::class,
+                ],
+                [
+                    'id'    => CacheItemPoolInterface::class,
+                    'class' => FileCachePool::class,
+                ],
+            ],
+
+        ];
     }
 
     /**
