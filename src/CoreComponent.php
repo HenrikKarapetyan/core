@@ -6,7 +6,6 @@ use Henrik\Cache\Adapters\FileCachePool;
 use Henrik\Contracts\AttributeParser\AttributesParserProcessorInterface;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
-use Henrik\Contracts\ComponentInterfaces\DependsOnAwareInterface;
 use Henrik\Contracts\Enums\ServiceScope;
 use Henrik\Contracts\EventDispatcherInterface;
 use Henrik\Contracts\FunctionInvokerInterface;
@@ -24,10 +23,9 @@ use Henrik\DI\Utils\FunctionInvoker;
 use Henrik\DI\Utils\MethodInvoker;
 use Henrik\Events\Attributes\AsEventListener;
 use Henrik\Events\EventDispatcher;
-use Henrik\Log\LoggerComponent;
 use Psr\Cache\CacheItemPoolInterface;
 
-class CoreComponent extends BaseComponent implements AttributesAndParsersAwareInterface, DependsOnAwareInterface
+class CoreComponent extends BaseComponent implements AttributesAndParsersAwareInterface
 {
     public function getServices(): array
     {
@@ -75,13 +73,5 @@ class CoreComponent extends BaseComponent implements AttributesAndParsersAwareIn
             AsFactory::class       => DIAttributesParser::class,
             Value::class           => ValueAttributeParser::class,
         ];
-    }
-
-    public function dependsOn(): array
-    {
-        return [
-            LoggerComponent::class,
-        ];
-
     }
 }
