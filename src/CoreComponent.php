@@ -3,7 +3,6 @@
 namespace Henrik\Core;
 
 use Henrik\Cache\Adapters\FileCachePool;
-use Henrik\Command\ConsoleComponent;
 use Henrik\Contracts\AttributeParser\AttributesParserProcessorInterface;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
@@ -82,7 +81,6 @@ class CoreComponent extends BaseComponent implements AttributesAndParsersAwareIn
     {
         return [
             LoggerComponent::class,
-            ConsoleComponent::class,
         ];
 
     }
