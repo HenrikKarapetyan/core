@@ -5,7 +5,8 @@ namespace Henrik\Core;
 use Henrik\Cache\Adapters\FileCachePool;
 use Henrik\Contracts\AttributeParser\AttributesParserProcessorInterface;
 use Henrik\Contracts\BaseComponent;
-use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\OnAttributesAndParsersAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\OnCommandAwareInterface;
 use Henrik\Contracts\Enums\ServiceScope;
 use Henrik\Contracts\EventDispatcherInterface;
 use Henrik\Contracts\FunctionInvokerInterface;
@@ -25,7 +26,7 @@ use Henrik\Events\Attributes\AsEventListener;
 use Henrik\Events\EventDispatcher;
 use Psr\Cache\CacheItemPoolInterface;
 
-class CoreComponent extends BaseComponent implements AttributesAndParsersAwareInterface
+class CoreComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnCommandAwareInterface
 {
     public function getServices(): array
     {
@@ -73,5 +74,10 @@ class CoreComponent extends BaseComponent implements AttributesAndParsersAwareIn
             AsFactory::class       => DIAttributesParser::class,
             Value::class           => ValueAttributeParser::class,
         ];
+    }
+
+    public function getCommandsPath(): string
+    {
+        return __DIR__ . '/Commands';
     }
 }
