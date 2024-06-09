@@ -80,4 +80,9 @@ class CoreComponent extends BaseComponent implements OnAttributesAndParsersAware
     {
         return [__DIR__ . '/Commands'];
     }
+
+    public function getRootNamespace(): string
+    {
+        return '\\Henrik\\Core';
+    }
 }
