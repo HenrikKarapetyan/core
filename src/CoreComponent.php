@@ -6,7 +6,7 @@ use Henrik\Cache\Adapters\FileCachePool;
 use Henrik\Contracts\AttributeParser\AttributesParserProcessorInterface;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\ComponentInterfaces\OnAttributesAndParsersAwareInterface;
-use Henrik\Contracts\ComponentInterfaces\OnCommandAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\OnSourcesAwareInterface;
 use Henrik\Contracts\Enums\ServiceScope;
 use Henrik\Contracts\EventDispatcherInterface;
 use Henrik\Contracts\FunctionInvokerInterface;
@@ -26,7 +26,7 @@ use Henrik\Events\Attributes\AsEventListener;
 use Henrik\Events\EventDispatcher;
 use Psr\Cache\CacheItemPoolInterface;
 
-class CoreComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnCommandAwareInterface
+class CoreComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnSourcesAwareInterface
 {
     public function getServices(): array
     {
@@ -76,8 +76,8 @@ class CoreComponent extends BaseComponent implements OnAttributesAndParsersAware
         ];
     }
 
-    public function getCommandsPath(): string
+    public function getSourcesDirectories(): array
     {
-        return __DIR__ . '/Commands';
+        return [__DIR__ . '/Commands'];
     }
 }
