@@ -76,13 +76,11 @@ class CoreComponent extends BaseComponent implements OnAttributesAndParsersAware
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getSourcesDirectories(): array
     {
-        return [__DIR__ . '/Commands'];
-    }
-
-    public function getRootNamespace(): string
-    {
-        return '\\Henrik\\Core';
+        return ['\\Henrik\\Core\\Commands' => __DIR__ . '/Commands'];
     }
 }
