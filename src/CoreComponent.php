@@ -3,9 +3,11 @@
 namespace Henrik\Core;
 
 use Henrik\Cache\Adapters\FileCachePool;
+use Henrik\Console\ConsoleComponent;
 use Henrik\Contracts\AttributeParser\AttributesParserProcessorInterface;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\ComponentInterfaces\OnAttributesAndParsersAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\OnDependsAwareInterface;
 use Henrik\Contracts\ComponentInterfaces\OnSourcesAwareInterface;
 use Henrik\Contracts\Enums\ServiceScope;
 use Henrik\Contracts\EventDispatcherInterface;
@@ -26,7 +28,7 @@ use Henrik\Events\Attributes\AsEventListener;
 use Henrik\Events\EventDispatcher;
 use Psr\Cache\CacheItemPoolInterface;
 
-class CoreComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnSourcesAwareInterface
+class CoreComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnSourcesAwareInterface, OnDependsAwareInterface
 {
     public function getServices(): array
     {
@@ -82,5 +84,10 @@ class CoreComponent extends BaseComponent implements OnAttributesAndParsersAware
     public function getSourcesDirectories(): array
     {
         return ['\\Henrik\\Core\\Commands' => __DIR__ . '/Commands'];
+    }
+
+    public function dependsOn(): array
+    {
+        return [ConsoleComponent::class];
     }
 }
